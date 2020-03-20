@@ -1,0 +1,30 @@
+{
+    "name": "dnafactory/laravel-modular-framework",
+    "description": "Enhance Laravel Modular System",
+    "homepage": "https://github.com/danielrussob/laravel-modular-framework.git",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.0.0",
+        "dnafactory/laravel-modular" : "*"
+    },
+    "authors": [
+        {
+            "name": "Daniel Russo",
+            "email": "daniel@dnafactory.it",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "DNAFactory\\Framework\\": ""
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DNAFactory\\Framework\\Provider\\ModuleRegisterServiceProvider"
+            ]
+        }
+    },
+    "prefer-stable": true
+}
