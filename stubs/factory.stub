@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Modules\DummyModuleName\Factory;
+
+use App\Modules\DummyModuleName\Api\DummyClassFactoryInterface;
+use App\Modules\DummyModuleName\Api\DummyClassRepositoryInterface;
+
+use App\Modules\DummyModuleName\Model\DummyClass;
+
+class DummyClassFactory implements DummyClassFactoryInterface
+{
+    protected $_repository;
+
+    public function __construct(
+        DummyClassRepositoryInterface $repository
+    )
+    {
+        $this->_repository = $repository;
+    }
+
+    public function create(array $params = [])
+    {
+        $model = $this->make();
+        return $this->_repository->save($model);
+    }
+
+    public function make(array $params = [])
+    {
+        return factory(DummyClass::class)->make([]);
+    }
+}

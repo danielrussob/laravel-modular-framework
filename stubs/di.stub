@@ -1,0 +1,6 @@
+AS BIND
+App\DummyModuleName\Api\Data\DummyClassInterface::class => App\DummyModuleName\Model\DummyClass::class,
+
+AS SINGLETON
+App\DummyModuleName\Api\DummyClassRepositoryInterface::class => App\DummyModuleName\Repository\DummyClassRepository::class,
+App\DummyModuleName\Api\DummyClassFactoryInterface::class => App\DummyModuleName\Factory\DummyClassFactory::class

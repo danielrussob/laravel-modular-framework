@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Modules\DummyModuleName\Api;
+
+use App\Framework\Api\SearchCriteriaInterface;
+use Illuminate\Support\Collection;
+
+use App\Modules\DummyModuleName\Api\Data\DummyClassInterface;
+
+interface DummyClassRepositoryInterface
+{
+    public function save(DummyClassInterface $model): DummyClassInterface;
+
+    public function get(string $code): DummyClassInterface;
+
+    public function getById(int $id): DummyClassInterface;
+
+    public function delete(DummyClassInterface $model): ?bool;
+
+    public function deleteById(int $id): ?bool;
+
+    public function deleteByCode(string $code): ?bool;
+
+    public function getList(SearchCriteriaInterface $searchCriteria) : Collection;
+}

@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Modules\DummyModuleName\Model;
+
+use Illuminate\Database\Eloquent\Model;
+
+use App\Modules\DummyModuleName\Api\Data\DummyClassInterface;
+
+class DummyClass extends Model implements DummyClassInterface
+{
+    const TABLE = 'NOME_DELLA_TABELLA';
+    public $table = self::TABLE;
+
+    const FOREIGN = 'CHIAVE_ESTERNA';
+
+    public $timestamps = false;
+
+    protected $fillable = [];
+
+    protected $casts = [
+
+    ];
+}

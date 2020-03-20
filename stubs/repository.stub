@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Modules\DummyModuleName\Repository;
+
+use App\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use App\Framework\Api\SearchCriteriaInterface;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Collection;
+
+use App\Modules\DummyModuleName\Api\DummyClassRepositoryInterface;
+use App\Modules\DummyModuleName\Api\Data\DummyClassInterface;
+
+class DummyClassRepository implements DummyClassRepositoryInterface
+{
+    protected $_model;
+    protected $_collectionProcessor;
+
+    public function __construct(
+        DummyClassInterface $model,
+        CollectionProcessorInterface $collectionProcessor
+    )
+    {
+        $this->_model = $model;
+        $this->_collectionProcessor = $collectionProcessor;
+    }
+
+    public function save(DummyClassInterface $model): DummyClassInterface
+    {
+        $model->save();
+        return $model;
+    }
+
+    public function get(string $code): DummyClassInterface
+    {
+        return $this->_model->where('code', $code)->firstOrFail();
+    }
+
+    public function getById(int $id): DummyClassInterface
+    {
+        return $this->_model->findOrFail($id);
+    }
+
+    public function delete(DummyClassInterface $model): ?bool
+    {
+        return $model->delete();
+    }
+
+    public function deleteById(int $id): ?bool
+    {
+        $model = $this->getById($id);
+        return $this->delete($model);
+    }
+
+    public function deleteByCode(string $code): ?bool
+    {
+        $model = $this->get($code);
+        return $this->delete($model);
+    }
+
+    public function getList(SearchCriteriaInterface $searchCriteria) : Collection
+    {
+        $list = $this->_model->newQuery();
+        $this->_collectionProcessor->process($searchCriteria, $list);
+
+        return $list->get();
+    }
+}

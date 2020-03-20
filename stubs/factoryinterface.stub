@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Modules\DummyModuleName\Api;
+
+interface DummyClassFactoryInterface
+{
+    public function create(array $params = []);
+
+    public function make(array $params = []);
+}
