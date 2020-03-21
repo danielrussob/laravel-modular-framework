@@ -4,11 +4,41 @@ see https://github.com/danielrussob/laravel-modular
 
 composer require dnafactory/laravel-modular-package
 
+
 ### Make Module
 
 `php artisan dna:make:module {moduleName}`
 
 it will create all etc files
+
+
+### Make Command
+
+`php artisan dna:make:command {moduleName} {className}`
+
+it will create a Command
+
+
+### Make Controller
+
+`php artisan dna:make:controller {moduleName} {className}`
+
+it will create a Controller
+
+
+### Make Provider
+
+`php artisan dna:make:provider {moduleName} {className}`
+
+it will create a Service Provider
+
+
+### Make Seeder
+
+`php artisan dna:make:seeder {moduleName} {className}`
+
+it will create a Seeder
+
 
 ### Make Triad
 
