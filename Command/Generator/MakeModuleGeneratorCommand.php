@@ -5,7 +5,8 @@ namespace DNAFactory\Framework\Command\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
-class MakeModuleGenerator extends Command
+// TODO: create a generic Generator and extend it
+class MakeModuleGeneratorCommand extends Command
 {
     protected $signature = 'dna:make:module {moduleName}';
 

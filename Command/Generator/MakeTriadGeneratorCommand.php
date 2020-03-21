@@ -6,7 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
-class MakeTriadGenerator extends Command
+// TODO: create a generic Generator and extend it
+class MakeTriadGeneratorCommand extends Command
 {
     protected $signature = 'dna:make:triad {moduleName} {className} {tableName}';
 

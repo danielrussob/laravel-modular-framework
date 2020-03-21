@@ -1,0 +1,19 @@
+<?php
+
+namespace App\DummyModuleName\Command;
+
+use Faker\Generator;
+use Illuminate\Database\Seeder;
+
+class DummyClass extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $faker = \Faker\Factory::create();
+    }
+}
