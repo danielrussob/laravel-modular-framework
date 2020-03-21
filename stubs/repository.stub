@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Modules\DummyModuleName\Repository;
+namespace App\DummyModuleName\Repository;
 
-use App\Framework\Api\SearchCriteria\CollectionProcessorInterface;
-use App\Framework\Api\SearchCriteriaInterface;
+use DNAFactory\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use DNAFactory\Framework\Api\SearchCriteriaInterface;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Collection;
 
-use App\Modules\DummyModuleName\Api\DummyClassRepositoryInterface;
-use App\Modules\DummyModuleName\Api\Data\DummyClassInterface;
+use App\DummyModuleName\Api\DummyClassRepositoryInterface;
+use App\DummyModuleName\Api\Data\DummyClassInterface;
 
 class DummyClassRepository implements DummyClassRepositoryInterface
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\DummyModuleName\Api;
+namespace App\DummyModuleName\Api;
 
-use App\Framework\Api\SearchCriteriaInterface;
+use DNAFactory\Framework\Api\SearchCriteriaInterface;
 use Illuminate\Support\Collection;
 
-use App\Modules\DummyModuleName\Api\Data\DummyClassInterface;
+use App\DummyModuleName\Api\Data\DummyClassInterface;
 
 interface DummyClassRepositoryInterface
 {

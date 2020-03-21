@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\DummyModuleName\Factory;
+namespace App\DummyModuleName\Factory;
 
-use App\Modules\DummyModuleName\Api\DummyClassFactoryInterface;
-use App\Modules\DummyModuleName\Api\DummyClassRepositoryInterface;
+use App\DummyModuleName\Api\DummyClassFactoryInterface;
+use App\DummyModuleName\Api\DummyClassRepositoryInterface;
 
-use App\Modules\DummyModuleName\Model\DummyClass;
+use App\DummyModuleName\Model\DummyClass;
 
 class DummyClassFactory implements DummyClassFactoryInterface
 {

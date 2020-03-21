@@ -53,6 +53,8 @@ class MakeTriadGenerator extends Command
         $this->getOutput()->writeln($template);
     }
 
+
+
     protected function repository($moduleName, $className)
     {
         $template = str_replace(
