@@ -1,0 +1,11 @@
+<?php
+
+return [
+    'bind' => [
+        // Interface::class => Concrete::class
+    ],
+
+    'singleton' => [
+        // Interface::class => Concrete::class
+    ]
+];

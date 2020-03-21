@@ -3,6 +3,7 @@
 namespace DNAFactory\Framework\Command\Generator;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
 class MakeTriadGenerator extends Command
@@ -21,7 +22,9 @@ class MakeTriadGenerator extends Command
 
         $filename = app_path($moduleName);
         if (!file_exists($filename)) {
-            mkdir($filename);
+            Artisan::call('dna:make:module', [
+                'moduleName' => $this->argument('moduleName')
+            ]);
         }
 
         $this->factory($moduleName, $className, $tableName);

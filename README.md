@@ -4,6 +4,12 @@ see https://github.com/danielrussob/laravel-modular
 
 composer require dnafactory/laravel-modular-package
 
+### Make Module
+
+`php artisan dna:make:module {moduleName}`
+
+it will create all etc files
+
 ### Make Triad
 
 `php artisan dna:make:triad {moduleName} {className} {tableName}`
