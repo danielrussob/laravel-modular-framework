@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class MakeTriadGenerator extends Command
 {
-    protected $signature = 'dna:make:triad {moduleName} {className}';
+    protected $signature = 'dna:make:triad {moduleName} {className} {tableName}';
 
     protected $description = 'Create a new triad';
 
@@ -17,25 +17,55 @@ class MakeTriadGenerator extends Command
     {
         $moduleName = 'Modules/' . $this->argument('moduleName');
         $className = $this->argument('className');
+        $tableName = $this->argument('tableName');
 
         $filename = app_path($moduleName);
         if (!file_exists($filename)) {
             mkdir($filename);
         }
 
-        $this->factory($moduleName, $className);
-        $this->factoryInterface($moduleName, $className);
+        $this->factory($moduleName, $className, $tableName);
+        $this->factoryInterface($moduleName, $className, $tableName);
 
-        $this->repository($moduleName, $className);
-        $this->repositoryInterface($moduleName, $className);
+        $this->repository($moduleName, $className, $tableName);
+        $this->repositoryInterface($moduleName, $className, $tableName);
 
-        $this->model($moduleName, $className);
-        $this->modelInterface($moduleName, $className);
+        $this->model($moduleName, $className, $tableName);
+        $this->modelInterface($moduleName, $className, $tableName);
 
-        $this->registerDi($moduleName, $className);
+        $this->migration($moduleName, $className, $tableName);
+
+        $this->di($moduleName, $className, $tableName);
     }
 
-    protected function registerDi($moduleName, $className)
+    protected function migration($moduleName, $className, $tableName)
+    {
+        $template = str_replace(
+            [
+                'DummyModuleName',
+                'DummyClass',
+            ],
+            [
+                str_replace("/", "\\", $moduleName),
+                $className,
+            ],
+            $this->getStub('migration')
+        );
+
+        if (!file_exists(app_path($moduleName."/migrations"))) {
+            mkdir(app_path($moduleName."/migrations"));
+        }
+
+        $filename = app_path($moduleName . "/migrations/2000_01_01_999999_create_" . strtolower($className) . "_table.php");
+        if (!file_exists($filename)) {
+            $this->output->success("Migration creata con successo");
+            file_put_contents($filename, $template);
+        } else {
+            $this->output->warning("Migration già esistente");
+        }
+    }
+
+    protected function di($moduleName, $className, $tableName)
     {
         $template = str_replace(
             [
@@ -55,7 +85,7 @@ class MakeTriadGenerator extends Command
 
 
 
-    protected function repository($moduleName, $className)
+    protected function repository($moduleName, $className, $tableName)
     {
         $template = str_replace(
             [
@@ -82,7 +112,7 @@ class MakeTriadGenerator extends Command
         }
     }
 
-    protected function repositoryInterface($moduleName, $className)
+    protected function repositoryInterface($moduleName, $className, $tableName)
     {
         $template = str_replace(
             [
@@ -109,7 +139,7 @@ class MakeTriadGenerator extends Command
         }
     }
 
-    protected function factory($moduleName, $className)
+    protected function factory($moduleName, $className, $tableName)
     {
         $template = str_replace(
             [
@@ -136,7 +166,7 @@ class MakeTriadGenerator extends Command
         }
     }
 
-    protected function factoryInterface($moduleName, $className)
+    protected function factoryInterface($moduleName, $className, $tableName)
     {
         $template = str_replace(
             [
@@ -163,16 +193,18 @@ class MakeTriadGenerator extends Command
         }
     }
 
-    protected function model($moduleName, $className)
+    protected function model($moduleName, $className, $tableName)
     {
         $template = str_replace(
             [
                 'DummyModuleName',
                 'DummyClass',
+                'DummyTableName'
             ],
             [
                 str_replace("/", "\\", $moduleName),
                 $className,
+                $tableName
             ],
             $this->getStub('model')
         );
@@ -190,7 +222,7 @@ class MakeTriadGenerator extends Command
         }
     }
 
-    protected function modelInterface($moduleName, $className)
+    protected function modelInterface($moduleName, $className, $tableName)
     {
         $template = str_replace(
             [
