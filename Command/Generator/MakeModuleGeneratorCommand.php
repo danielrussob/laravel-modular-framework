@@ -24,7 +24,9 @@ class MakeModuleGeneratorCommand extends Command
         }
 
         $this->helpers($moduleName);
-        $this->routes($moduleName);
+        $this->web($moduleName);
+        $this->api($moduleName);
+        $this->channels($moduleName);
         $this->commands($moduleName);
         $this->di($moduleName);
         $this->providers($moduleName);
@@ -47,20 +49,66 @@ class MakeModuleGeneratorCommand extends Command
         }
     }
 
-    protected function routes($moduleName)
+    protected function web($moduleName)
     {
         $template = str_replace(
             [],
             [],
-            $this->getStub('routes')
+            $this->getStub('web')
         );
 
-        $filename = app_path($moduleName . "/routes.php");
+        if (!file_exists(app_path($moduleName."/routes"))) {
+            mkdir(app_path($moduleName."/routes"));
+        }
+
+        $filename = app_path($moduleName . "/routes/web.php");
         if (!file_exists($filename)) {
-            $this->output->success("Routes creato con successo");
+            $this->output->success("Web creato con successo");
             file_put_contents($filename, $template);
         } else {
-            $this->output->warning("Routes già esistente");
+            $this->output->warning("Web già esistente");
+        }
+    }
+
+    protected function api($moduleName)
+    {
+        $template = str_replace(
+            [],
+            [],
+            $this->getStub('api')
+        );
+
+        if (!file_exists(app_path($moduleName."/routes"))) {
+            mkdir(app_path($moduleName."/routes"));
+        }
+
+        $filename = app_path($moduleName . "/routes/api.php");
+        if (!file_exists($filename)) {
+            $this->output->success("Api creato con successo");
+            file_put_contents($filename, $template);
+        } else {
+            $this->output->warning("Api già esistente");
+        }
+    }
+
+    protected function channels($moduleName)
+    {
+        $template = str_replace(
+            [],
+            [],
+            $this->getStub('channels')
+        );
+
+        if (!file_exists(app_path($moduleName."/routes"))) {
+            mkdir(app_path($moduleName."/routes"));
+        }
+
+        $filename = app_path($moduleName . "/routes/channels.php");
+        if (!file_exists($filename)) {
+            $this->output->success("Channels creato con successo");
+            file_put_contents($filename, $template);
+        } else {
+            $this->output->warning("Channels già esistente");
         }
     }
 
