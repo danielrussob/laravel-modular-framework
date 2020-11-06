@@ -1,6 +1,7 @@
 {
     "name": "dnafactory/laravel-modular-framework",
     "description": "Enhance Laravel Modular System",
+    "keywords": ["Laravel"],
     "homepage": "https://github.com/danielrussob/laravel-modular-framework.git",
     "license": "MIT",
     "require": {
